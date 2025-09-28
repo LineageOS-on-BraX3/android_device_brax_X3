@@ -1,0 +1,7 @@
+add_service(hal_fingerprint_default, ff_service)
+binder_call(hal_fingerprint_default, vndservicemanager)
+
+allow hal_fingerprint_default ff_data_file:dir create_dir_perms;
+allow hal_fingerprint_default ff_data_file:file create_file_perms;
+
+allow hal_fingerprint_default vndbinder_device:chr_file rw_file_perms;
