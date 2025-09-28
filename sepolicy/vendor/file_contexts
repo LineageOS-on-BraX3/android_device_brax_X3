@@ -1,0 +1,10 @@
+# Fingerprint
+/dev/focaltech_fp               u:object_r:fingerprint_device:s0
+/data/vendor/focaltech(/.*)?    u:object_r:ff_data_file:s0
+
+# NFC
+/dev/sec-nfc                                               u:object_r:nfc_device:s0
+/vendor/bin/hw/android\.hardware\.nfc@1\.2-service\.sec    u:object_r:hal_nfc_default_exec:s0
+
+# Radio
+/dev/ttyCMIPC5    u:object_r:gsm0710muxd_device:s0
