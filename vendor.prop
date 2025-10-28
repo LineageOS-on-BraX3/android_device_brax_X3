@@ -1,9 +1,6 @@
 # Audio
 aaudio.mmap_exclusive_policy=0
 aaudio.mmap_policy=0
-audio.deep_buffer.media
-audio.offload.min.duration.secs=30
-audio.offload.video=true
 persist.vendor.audiohal.aurisys.pcm_dump_on=0
 persist.vendor.audiohal.p2w_dump_on=0
 persist.vendor.audiohal.pcm_mixer_dump_on=0
@@ -43,6 +40,8 @@ persist.vendor.camera3.pipeline.bufnum.min.low_ram.lcso=6
 persist.vendor.camera3.pipeline.bufnum.min.low_ram.rsso=6
 persist.vendor.camera3.pipeline.bufnum.min.low_ram.rrzo=6
 ro.camera.disableJpegR=true
+ro.odm.camera=1
+ro.odm.ctstest_remove_muticamera=1
 ro.vendor.camera.aishutter.support=0
 ro.vendor.camera.insensorzoom.support=0
 ro.vendor.camera.isp.support.colorspace=0
@@ -58,19 +57,17 @@ ro.crypto.volume.filenames_mode=aes-256-cts
 # Display
 debug.mediatek.disp_decompress=1
 debug.renderengine.backend=skiaglthreaded
+debug.sf.auto_latch_unsignaled=false
 debug.sf.enable_gl_backpressure=0
-debug.sf.enable_hwc_vds=0
 debug.sf.enable_transaction_tracing=false
 debug.sf.early.app.duration=17200000
 debug.sf.early.sf.duration=15100000
 debug.sf.earlyGl.app.duration=17200000
 debug.sf.earlyGl.sf.duration=15100000
-debug.sf.enable_hwc_vds=0
 debug.sf.hwc.min.duration=2000000
 debug.sf.late.app.duration=17200000
 debug.sf.late.sf.duration=15100000
 debug.sf.predict_hwc_composition_strategy=0
-debug.sf.treat_170m_as_sRGB=1
 debug.sf.use_phase_offsets_as_durations=1
 persist.vendor.factory.GB2312=no
 ro.hardware.gralloc=common
@@ -82,13 +79,42 @@ ro.surface_flinger.protected_contents=true
 ro.surface_flinger.uclamp.min=234
 ro.vendor.jpeg_decode_sw_opt=1
 ro.vendor.mml.mtk_mml_support=0
-ro.vendor.mtk_aod_support=1
 ro.vendor.mtk_backlight_hwc_support=1
+ro.vendor.mtk_ovl_bringup=0
 ro.vendor.pref_scale_enable_cfg=1
-vendor.mtk.hwc.HWC_PLAT_SWITCH_EXTEND_SF_TARGET_TS_FOR_VIDEO=1
 
 # DRM
 drm.service.enabled=true
+
+# Factory (ODM)
+ro.odm.64B_project=1
+ro.odm.board_network_type=GB/WB/LfB/LtB/NB
+ro.odm.cust=odm
+ro.odm.del_lan_switch_btn=1
+ro.odm.doujia_dog_free=1
+ro.odm.dual_mic_support=1
+ro.odm.factory_board=MTK
+ro.odm.factory_calibration01=1
+ro.odm.factory_default_lang_en=1
+ro.odm.factory_hide_drm_info=0
+ro.odm.factory_hisense_aging_wifi_gsensor=0
+ro.odm.factory_stk_version_dialog=0
+ro.odm.factory_symp_ctp_bevel_angle=0
+ro.odm.factory_test=1
+ro.odm.factory_test_wbg=0
+ro.odm.factory_walton_k80_version_2sn=0
+ro.odm.fingerprint=ft9399_tee
+ro.odm.fingerprint_module=1
+ro.odm.hide_pcba_ata_flag=1
+ro.odm.hor_cali=1
+ro.odm.hor_cali_show_settings_menu=1
+ro.odm.otg=1
+ro.odm.psensor_cali=0
+ro.odm.rear_camera_sub=1
+ro.odm.sar_sensor=1
+ro.odm.tee=5
+ro.odm.underscreen_light_cali=0
+ro.odm.usb3_func=0
 
 # FM
 persist.vendor.connsys.fm_chipid=mt6631_6635
@@ -149,11 +175,13 @@ vendor.mtk.vdec.waitkeyframeforplay=9
 ro.netflix.bsp_rev=MTK6835-36999-1
 
 # Neural Networks
+ro.vendor.mtk_mvpu_security_support=0
 ro.vendor.mtk_nn_baseline_support=1
 ro.vendor.mtk_nn_quant_preferred=1
 ro.vendor.mtk_nn.option=A,B,C,D,E,F,G,Z
 
 # Picture Quality
+persist.vendor.sys.pq.mtk_disp_clarity_support=0
 ro.vendor.mtk_aal_support=1
 ro.vendor.mtk_pq_color_mode=1
 ro.vendor.mtk_pq_support=2
@@ -182,7 +210,6 @@ ro.vendor.pq.mtk_mdp_lite_pq_support=0
 ro.vendor.pq.mtk_pq_interface_support=0
 ro.vendor.pq.mtk_pq_video_whitelist_support=0
 ro.vendor.pq.mtk_scltm_support=0
-ro.vendor.pq.mtk_silky_brigtness_support=0
 ro.vendor.pq.mtk_ultra_dimming_support=1
 ro.vendor.pq.mtk_ultra_resolution_support=0
 ro.vendor.pq.mtk_video_transition=0
@@ -201,6 +228,7 @@ persist.vendor.md_c2k_cap_dep_check=0
 persist.vendor.mims_support=2
 persist.vendor.mtk_ct_volte_support=3
 persist.vendor.mtk_dynamic_ims_switch=1
+persist.vendor.mtk_sim_switch_policy=2
 persist.vendor.mtk_usp_switch_mode=1
 persist.vendor.mtk_wfc_support=1
 persist.vendor.mtk.volte.enable=1
@@ -210,11 +238,8 @@ persist.vendor.radio.fd.off.r8.counter=50
 persist.vendor.radio.fd.r8.counter=150
 persist.vendor.radio.msimmode=dsds
 persist.vendor.radio.mtk_dsbp_support=3
-persist.vendor.radio.mtk_mipc_support=1
 persist.vendor.radio.mtk_ps2_rat=N/L/W/G
 persist.vendor.radio.mtk_ps3_rat=G
-persist.vendor.radio.nr_display_rule=0
-persist.vendor.radio.oem_urc_enable=1
 persist.vendor.radio.smart.data.switch=1
 persist.vendor.vilte_support=1
 persist.vendor.viwifi_support=0
@@ -232,7 +257,6 @@ ro.vendor.mtk_disable_cap_switch=1
 ro.vendor.mtk_eccci_c2k=1
 ro.vendor.mtk_external_sim_only_slots=0
 ro.vendor.mtk_fd_support=1
-ro.vendor.mtk_gwsd_capability=2
 ro.vendor.mtk_lte_support=1
 ro.vendor.mtk_md_sbp_custom_value=0
 ro.vendor.mtk_md_world_mode_support=1
@@ -251,8 +275,6 @@ ro.vendor.radio.max.multisim=dsds
 ro.vendor.sim_me_lock_mode=3
 telephony.active_modems.max_count=2
 vendor.connsys.driver.ready=no
-vendor.rild.libpath=mtk-ril.so
-vendor.rild.libargs=-d /dev/ttyC0
 
 # Sensors
 ro.vendor.mtk.sensor.support=yes

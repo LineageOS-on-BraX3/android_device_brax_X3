@@ -3,6 +3,9 @@ ro.audio.silent=0
 ro.audio.usb.period_us=16000
 ro.camera.sound.forced=0
 
+# Camera
+vendor.debug.camera.single_main2=1
+
 # IMS
 persist.dbg.volte_avail_ovr=1
 persist.dbg.vt_avail_ovr=1
@@ -10,6 +13,12 @@ persist.dbg.wfc_avail_ovr=1
 
 # Media
 media.stagefright.thumbnail.prefer_hw_codecs=true
+
+# Radio
+persist.vendor.mtk_rcs_single_reg_support=1
+ro.vendor.mtk_telephony_add_on_policy=0
+vendor.rild.libargs=-d /dev/ttyC0
+vendor.rild.libpath=mtk-ril.so
 
 # Wifi
 wifi.direct.interface=p2p0

@@ -1,0 +1,2 @@
+genfscon sysfs /devices/platform/soc/soc:regulator-vibrator/leds/vibrator    u:object_r:sysfs_vibrator:s0
+
