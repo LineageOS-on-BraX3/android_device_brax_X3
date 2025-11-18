@@ -40,8 +40,8 @@ persist.vendor.camera3.pipeline.bufnum.min.low_ram.lcso=6
 persist.vendor.camera3.pipeline.bufnum.min.low_ram.rsso=6
 persist.vendor.camera3.pipeline.bufnum.min.low_ram.rrzo=6
 ro.camera.disableJpegR=true
-ro.odm.camera=1
-ro.odm.ctstest_remove_muticamera=1
+#ro.odm.camera=1
+#ro.odm.ctstest_remove_muticamera=1
 ro.vendor.camera.aishutter.support=0
 ro.vendor.camera.insensorzoom.support=0
 ro.vendor.camera.isp.support.colorspace=0
@@ -54,10 +54,14 @@ vendor.camera.mdp.dre.enable=1
 # Crypto
 ro.crypto.volume.filenames_mode=aes-256-cts
 
+# Dalvik
+dalvik.vm.dex2oat64.enabled=true
+
 # Display
 debug.mediatek.disp_decompress=1
 debug.renderengine.backend=skiaglthreaded
 debug.sf.auto_latch_unsignaled=false
+debug.sf.enable_hwc_vds=0
 debug.sf.enable_gl_backpressure=0
 debug.sf.enable_transaction_tracing=false
 debug.sf.early.app.duration=17200000
@@ -85,6 +89,12 @@ ro.vendor.pref_scale_enable_cfg=1
 
 # DRM
 drm.service.enabled=true
+
+# Factory
+ro.vendor.mtk_hdr_video_support=1
+ro.vendor.mtk_sec_video_path_support=1
+ro.vendor.mediatek.version.branch=alps-mp-t0.mp1
+ro.vendor.mediatek.version.release=alps-mp-t0.mp1.rc-V11.291.t0mp1rc.k6985v1.64_P3
 
 # Factory (ODM)
 ro.odm.64B_project=1
@@ -115,6 +125,10 @@ ro.odm.sar_sensor=1
 ro.odm.tee=5
 ro.odm.underscreen_light_cali=0
 ro.odm.usb3_func=0
+
+# Fingerprint
+persist.vendor.fingerprint.type=side
+persist.vendor.fingerprint.sensor_location=720|660|100|local:4627039422300187648
 
 # FM
 persist.vendor.connsys.fm_chipid=mt6631_6635
@@ -163,9 +177,10 @@ ro.hardware.kmsetkey=trustonic
 ro.lmk.downgrade_pressure=60
 
 # Media
+debug.c2.use_dmabufheaps=1
 debug.stagefright.c2inputsurface=-1
 media.c2.dmabuf.padding=3072
-ro.vendor.mtk_config_max_dram_size=
+ro.vendor.mtk_config_max_dram_size=0x180000000
 ro.vendor.mtk.c2.vdec.fmt.support.level=2
 vendor.media.omx=0
 vendor.mtk.vdec.decode.error.handle.mode=1
@@ -217,6 +232,9 @@ ro.vendor.pq.mtk_video_transition=0
 # Platform
 ro.vendor.mediatek.platform=MT6835
 ro.vendor.mgk_name=mgk_64_entry_level_k515
+
+# Power
+persist.system.powerhal.applist_enable=1
 
 # Radio
 persist.radio.multisim.config=dsds

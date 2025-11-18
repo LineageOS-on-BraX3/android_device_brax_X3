@@ -4,7 +4,7 @@
 #
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # A/B
@@ -35,17 +35,19 @@ BOARD_SHIPPING_API_LEVEL := 33
 PRODUCT_SHIPPING_API_LEVEL := 34
 
 # Audio
-PRODUCT_PACKAGES += \
-    android.hardware.audio.effect@7.0-impl \
-    android.hardware.audio.service \
-    android.hardware.bluetooth.audio-impl \
-    android.hardware.soundtrigger@2.3-impl
+$(call soong_config_set,android_hardware_audio,run_64bit,true)
 
 PRODUCT_PACKAGES += \
-    audio.primary.default \
-    audio.bluetooth.default \
-    audio.r_submix.default \
-    audio.usb.default
+    android.hardware.audio.effect@7.0-impl:64 \
+    android.hardware.audio.service \
+    android.hardware.bluetooth.audio-impl:64 \
+    android.hardware.soundtrigger@2.3-impl:64
+
+PRODUCT_PACKAGES += \
+    audio.primary.default:64 \
+    audio.bluetooth.default:64 \
+    audio.r_submix.default:64 \
+    audio.usb.default:64
 
 PRODUCT_PACKAGES += \
     MtkInCallService
@@ -76,9 +78,6 @@ TARGET_SCREEN_HEIGHT := 1612
 TARGET_SCREEN_WIDTH := 720
 
 # Camera
-PRODUCT_PACKAGES += \
-    libcamera2ndk_vendor
-
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.front.xml \
@@ -115,7 +114,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.1-service
+    android.hardware.biometrics.fingerprint-service.lineage
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
@@ -126,7 +125,7 @@ PRODUCT_PACKAGES += \
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
-    android.hardware.gatekeeper@1.0-impl \
+    android.hardware.gatekeeper@1.0-impl:64 \
     android.hardware.gatekeeper@1.0-service
 
 # GNSS
@@ -147,6 +146,7 @@ $(call soong_config_set,lineage_health,charging_control_charging_disabled,1)
 
 # Init
 PRODUCT_PACKAGES += \
+    fstab.enableswap \
     fstab.mt6835 \
     fstab.mt6835.vendor_ramdisk \
     init_connectivity.rc \
@@ -160,6 +160,21 @@ PRODUCT_PACKAGES += \
     init.project.rc \
     init.sensor_2_0.rc \
     ueventd.mt6835.rc
+
+PRODUCT_PACKAGES += \
+    factory_init.connectivity.common.rc \
+    factory_init.connectivity.rc \
+    factory_init.project.rc \
+    factory_init.rc \
+    meta_init.connectivity.common.rc \
+    meta_init.connectivity.rc \
+    meta_init.modem.rc \
+    meta_init.project.rc \
+    meta_init.rc \
+    meta_init.system.rc \
+    meta_init.vendor.rc \
+    multi_init.rc \
+    vendor_init_as_system.rc
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init/init.recovery.mt6835.rc:$(TARGET_COPY_OUT_RECOVERY)/root/init.recovery.mt6835.rc
@@ -177,6 +192,8 @@ PRODUCT_PACKAGES += \
     android.hardware.light-service.lineage
 
 # Media
+TARGET_SUPPORTS_OMX_SERVICE := false
+
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/media,$(TARGET_COPY_OUT_VENDOR)/etc)
 
@@ -210,6 +227,9 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     NcmTetheringOverlay
+
+PRODUCT_PACKAGES += \
+    LineageApertureResOverlay
 
 # Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -256,7 +276,7 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors-service.multihal \
-    android.hardware.sensors@2.0-subhal-impl-1.0
+    android.hardware.sensors@2.0-subhal-impl-1.0:64
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
@@ -276,7 +296,7 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Thermal
 PRODUCT_PACKAGES += \
-    android.hardware.thermal@1.0-impl
+    android.hardware.thermal@1.0-impl:64
 
 # USB
 $(call soong_config_set,android_hardware_mediatek_usb,audio_accessory_supported,true)
@@ -309,7 +329,7 @@ $(call soong_config_set,wpa_supplicant_8,board_wlan_mediatek_stability,true)
 PRODUCT_PACKAGES += \
     wpa_supplicant \
     hostapd \
-    libwifi-hal-wrapper \
+    libwifi-hal-wrapper:64 \
     android.hardware.wifi-service
 
 PRODUCT_COPY_FILES += \

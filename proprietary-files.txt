@@ -57,6 +57,12 @@ vendor/etc/aurisys_config_rv.xml
 # Audio (Device)
 vendor/etc/audio_device.xml
 
+# Audio (Engineer)
+vendor/etc/audio_em.xml
+
+# Audio (Log)
+vendor/etc/AudioLog_dynamic.xml
+
 # Audio (Parameters)
 vendor/etc/audio_param/AudioParamOptions_mgvi.xml
 vendor/etc/audio_param/AudioParamOptions_vext.xml
@@ -657,6 +663,28 @@ vendor/lib64/vendor.mediatek.hardware.pq@2.8.so
 vendor/lib64/vendor.mediatek.hardware.pq@2.9.so
 vendor/lib64/vendor.mediatek.hardware.pq_aidl-V1-ndk.so
 
+# Factory
+vendor/app/HorCali/HorCali.apk
+vendor/app/SensorHub/SensorHub.apk
+vendor/bin/atcid
+vendor/bin/factory
+vendor/bin/meta_tst
+vendor/etc/factory.ini
+vendor/etc/partition_permission.sh
+vendor/lib64/mt6835/libacdk.so;SYMLINK=vendor/lib64/libacdk.so
+vendor/lib64/libem_sensor_jni.so;SYMLINK=vendor/app/SensorHub/lib/arm64/libem_sensor_jni.so
+vendor/lib64/libfft_vendor.so
+vendor/lib64/libkmsetkey.so
+vendor/lib64/libminiui.so
+vendor/lib64/libprizeem_sensor_jni.so;SYMLINK=vendor/app/HorCali/lib/arm64/libprizeem_sensor_jni.so
+vendor/lib64/libwifical.so
+vendor/lib64/libwifitest.so
+vendor/lib64/libwifinvram.so
+vendor/lib64/vendor.mediatek.hardware.atci@1.0.so
+vendor/res/images/lcd_test_00.png
+vendor/res/images/lcd_test_01.png
+vendor/res/images/lcd_test_02.png
+
 # Fingerprint
 vendor/lib64/hw/fingerprint.default.so:vendor/lib64/hw/fingerprint.mt6835.so;FIX_SONAME
 
@@ -812,6 +840,9 @@ vendor/bin/hw/android.hardware.media.c2@1.2-mediatek-64b
 vendor/etc/init/android.hardware.media.c2@1.2-mediatek-64b.rc
 vendor/etc/seccomp_policy/android.hardware.media.c2@1.2-extended-seccomp-policy
 vendor/etc/seccomp_policy/android.hardware.media.c2@1.2-mediatek-seccomp-policy
+vendor/etc/seccomp_policy/mediacodec.policy
+vendor/etc/seccomp_policy/mediaextractor.policy
+vendor/etc/seccomp_policy/mediaswcodec.policy
 vendor/etc/vintf/manifest/manifest_media_c2_V1_1_default.xml
 vendor/etc/media_profiles_V1_0.xml
 vendor/etc/mtk_platform_codecs_config.xml
@@ -874,6 +905,7 @@ vendor/etc/public.libraries.txt
 vendor/bin/hw/android.hardware.neuralnetworks-shim-service-mtk
 vendor/etc/init/android.hardware.neuralnetworks-shim-service-mtk.rc
 vendor/etc/vintf/manifest/android.hardware.neuralnetworks-shim-service-mtk.xml
+vendor/etc/armnn_app.config
 vendor/etc/nnapi_powerhal.json
 vendor/lib64/mt6835/libneuralnetworks_sl_driver_mtk_prebuilt.so;SYMLINK=vendor/lib64/libneuralnetworks_sl_driver_mtk_prebuilt.so
 vendor/lib64/mt6835/libneuron_adapter_mgvi.so;SYMLINK=vendor/lib64/libneuron_adapter_mgvi.so
@@ -940,6 +972,8 @@ vendor/bin/hw/vendor.mediatek.hardware.mtkpower@1.0-service
 vendor/bin/hw/vendor.mediatek.hardware.mtkpower_applist-service.mediatek
 vendor/bin/gbe
 vendor/bin/touch_boost
+vendor/etc/init/gbe.rc
+vendor/etc/init/mtkpower_applist-mtk-default.rc
 vendor/etc/init/touch_boost.rc
 vendor/etc/init/vendor.mediatek.hardware.mtkpower@1.0-init.rc
 vendor/etc/init/vendor.mediatek.hardware.mtkpower@1.0-service.rc
@@ -977,6 +1011,7 @@ vendor/etc/init/init.cccimdinit.rc
 vendor/etc/init/init.cccirpcd.rc
 vendor/etc/init/mtkrild.rc
 vendor/etc/init/muxreport.rc
+vendor/etc/init/networksetting.rc
 vendor/etc/MNL_Config.xml
 vendor/etc/ecc_list.xml
 vendor/etc/ecc_list_OP01.xml
@@ -1150,3 +1185,29 @@ vendor/firmware/WMT_SOC.cfg
 vendor/firmware/wifi.cfg
 vendor/lib64/libwapi.so
 vendor/lib64/libwifi-hal.so:vendor/lib64/libwifi-hal-mtk.so;FIX_SONAME
+
+# TEST
+vendor/bin/vpud
+vendor/lib/mt6835/libmtk_drvb.so;SYMLINK=vendor/lib/libmtk_drvb.so
+vendor/lib/mt6835/libvcodec_utility.so;SYMLINK=vendor/lib/libvcodec_utility.so
+vendor/lib/mt6835/libvcodecdrv.so;SYMLINK=vendor/lib/libvcodecdrv.so
+vendor/lib/libHEVCdec_sa.ca7.android.so;DISABLE_CHECKELF
+vendor/lib/libaedv.so
+vendor/lib/libh264dec_customize.so
+vendor/lib/libh264dec_sa.ca7.so;DISABLE_CHECKELF
+vendor/lib/libh264dec_sd.ca7.so;DISABLE_CHECKELF
+vendor/lib/libh264dec_se.ca7.so;DISABLE_CHECKELF
+vendor/lib/libh264enc_sa.ca7.so;DISABLE_CHECKELF
+vendor/lib/libhevce_sb.ca7.android.so;DISABLE_CHECKELF
+vendor/lib/libmp4enc_sa.ca7.so;DISABLE_CHECKELF
+vendor/lib/libmp4enc_xa.ca7.so;DISABLE_CHECKELF
+vendor/lib/libmtkperf_client_vendor.so
+vendor/lib/libpowerhalwrap_vendor.so
+vendor/lib/libthha.so;DISABLE_CHECKELF
+vendor/lib/libvcodec_oal.so;DISABLE_CHECKELF
+vendor/lib/libvcodec_utility_plat.mt6835.so
+vendor/lib/libvp8dec_sa.ca7.so;DISABLE_CHECKELF
+vendor/lib/libvp8enc_sa.ca7.so;DISABLE_CHECKELF
+vendor/lib/libvp9dec_sa.ca7.so;DISABLE_CHECKELF
+vendor/lib/libvpud_vcodec.so
+vendor/lib/vendor.mediatek.hardware.mtkpower_applist-V1-ndk.so
