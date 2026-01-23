@@ -64,7 +64,9 @@ blob_fixups: blob_fixups_user_type = {
         .add_needed('libutils-v33.so'),
     (
         'vendor/bin/factory',
-        'vendor/lib64/libnvram.so'
+        'vendor/lib64/android.hardware.power-service-mediatek.so',
+        'vendor/lib64/libnvram.so',
+        'vendor/lib64/libtflite_mtk.so'
     ): blob_fixup()
         .add_needed('libbase_shim.so'),
     (
@@ -104,20 +106,23 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('libstagefright_bufferqueue_helper.so', 'libstagefright_bufferqueue_helper-bp2a.so')
         .replace_needed('libcodec2_hidl_plugin.so', 'libcodec2_hidl_plugin-v33.so')
         .replace_needed('libcodec2_vndk.so', 'libcodec2_vndk-v33.so')
-        .replace_needed('libui.so', 'libui-v34.so'),
+        .replace_needed('libui.so', 'libui-v34.so')
+        .add_needed('libbase_shim.so'),
     'vendor/lib64/libcodec2_hidl@1.1-v33.so': blob_fixup()
         .replace_needed('libstagefright_bufferqueue_helper.so', 'libstagefright_bufferqueue_helper-bp2a.so')
         .replace_needed('libcodec2_hidl@1.0.so', 'libcodec2_hidl@1.0-v33.so')
         .replace_needed('libcodec2_hidl_plugin.so', 'libcodec2_hidl_plugin-v33.so')
         .replace_needed('libcodec2_vndk.so', 'libcodec2_vndk-v33.so')
-        .replace_needed('libui.so', 'libui-v34.so'),
+        .replace_needed('libui.so', 'libui-v34.so')
+        .add_needed('libbase_shim.so'),
     'vendor/lib64/libcodec2_hidl@1.2-v33.so': blob_fixup()
         .replace_needed('libstagefright_bufferqueue_helper.so', 'libstagefright_bufferqueue_helper-bp2a.so')
         .replace_needed('libcodec2_hidl@1.0.so', 'libcodec2_hidl@1.0-v33.so')
         .replace_needed('libcodec2_hidl@1.1.so', 'libcodec2_hidl@1.1-v33.so')
         .replace_needed('libcodec2_hidl_plugin.so', 'libcodec2_hidl_plugin-v33.so')
         .replace_needed('libcodec2_vndk.so', 'libcodec2_vndk-v33.so')
-        .replace_needed('libui.so', 'libui-v34.so'),
+        .replace_needed('libui.so', 'libui-v34.so')
+        .add_needed('libbase_shim.so'),
     'vendor/lib64/libcodec2_hidl_plugin-v33.so': blob_fixup()
         .replace_needed('libcodec2_vndk.so', 'libcodec2_vndk-v33.so'),
     (
