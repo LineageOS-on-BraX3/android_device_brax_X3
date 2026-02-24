@@ -17,7 +17,7 @@ bluetooth.profile.pbap.server.enabled=true
 bluetooth.profile.sap.server.enabled=true
 
 # FM Radio
-ro.fm.chip=0x6635
+ro.fm.chip=0x6631
 ro.fm.band=1
 ro.fm.low_band=875
 ro.fm.high_band=1080
