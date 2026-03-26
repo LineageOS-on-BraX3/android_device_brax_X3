@@ -262,9 +262,9 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.ims.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.ims.xml
 
 # Security
-BOOT_SECURITY_PATCH := 2024-05-05
+BOOT_SECURITY_PATCH := 2024-12-05
 INIT_BOOT_SECURITY_PATCH := $(BOOT_SECURITY_PATCH)
-VENDOR_SECURITY_PATCH := 2025-04-05
+VENDOR_SECURITY_PATCH := 2026-01-05
 
 # Setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)

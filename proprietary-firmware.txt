@@ -1,5 +1,5 @@
 # All proprietary files from this list, unless pinned and noted otherwise,
-# are from BraX3 (LunarOS-v6.0.0-20251001-X3)
+# are from BraX3 (LunarOS-v6.0.0-20260324-X3)
 
 connsys_bt.img;AB
 dpm.img;AB
