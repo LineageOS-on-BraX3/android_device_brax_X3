@@ -63,11 +63,6 @@ blob_fixups: blob_fixups_user_type = {
     'vendor/bin/hw/mtkfusionrild': blob_fixup()
         .add_needed('libutils-v33.so'),
     (
-        'vendor/bin/hw/vendor.mediatek.hardware.mtkpower@1.0-service',
-        'vendor/lib64/android.hardware.power-service-mediatek.so'
-    ): blob_fixup()
-        .replace_needed('android.hardware.power-V3-ndk.so', 'android.hardware.power-V2-ndk.so'),
-    (
         'vendor/bin/factory',
         'vendor/lib64/libnvram.so'
     ): blob_fixup()
