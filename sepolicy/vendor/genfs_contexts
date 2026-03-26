@@ -28,4 +28,3 @@ genfscon sysfs /devices/platform/soc/1c804000.spmi/spmi-0/0-04/mt6377-gauge/powe
 genfscon sysfs /devices/platform/soc/1c804000.spmi/spmi-0/0-04/mt6377-gauge/power_supply/mtk-gauge/wakeup35    u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/11b20000.i2c/i2c-3/3-0027/wakeup                                          u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/11013000.spi3/spi_master/spi3/spi3.0/wakeup                               u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/soc/1f000000.mdp/wakeup                                                       u:object_r:sysfs_wakeup:s0
