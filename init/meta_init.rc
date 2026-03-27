@@ -135,6 +135,12 @@ on load_system_props_action
 
 
 on fs
+    start earlylog0
+    wait /toto 5
+    rm /metadata/logcat
+    start earlylog
+    wait /toto 5
+
     ## USB configfs
     mkdir /dev/usb-ffs 0770 shell shell
     mkdir /dev/usb-ffs/adb 0770 shell shell
@@ -424,5 +430,17 @@ on property:persist.vendor.mediatek.charger.log.enable=1
     write /sys/devices/platform/charger/charger_log_level 3
     write /sys/module/pd_dbg_info/parameters/dbg_log_en 1
     write /sys/module/mt6375_charger/parameters/dbg_log_en 1
+
+service earlylog0 /system/bin/logcat -b all -f /metadata/logcat0
+    class core
+    user root
+    disabled
+    oneshot
+
+service earlylog /system/bin/logcat -b all -f /metadata/logcat
+    class core
+    user root
+    disabled
+    oneshot
 
 #INTERNAL_END

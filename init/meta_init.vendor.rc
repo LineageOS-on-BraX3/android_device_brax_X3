@@ -16,10 +16,5 @@ import /vendor/etc/init/android.hardware.security.keymint-service.beanpod.rc
 
 import /vendor/etc/init/hw/meta_init.rc
 
-service vendor.boot-default /apex/com.android.hardware.boot/bin/hw/android.hardware.boot-service.default
-    class early_hal
-    user root
-    group root
-
 on late-fs
     class_start early_hal
