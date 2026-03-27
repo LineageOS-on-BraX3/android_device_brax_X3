@@ -13,10 +13,6 @@ on post-fs
     mkdir /metadata/apex 0700 root system
     mkdir /metadata/apex/sessions 0700 root system
 
-on late-fs
-    # Load trusted keys from dm-verity protected partitions
-    exec -- /system/bin/fsverity_init --load-verified-keys
-
 on post-fs-data
     mark_post_data
 
@@ -36,6 +32,10 @@ on post-fs-data
     # mounted to collect more data.
     mkdir /data/bootchart 0755 shell shell
     bootchart start
+
+    # Load fsverity keys. This needs to happen before apexd, as post-install of
+    # APEXes may rely on keys.
+    exec -- /system/bin/fsverity_init
 
     # Make sure that apexd is started in the default namespace
     enter_default_mount_ns
@@ -292,11 +292,13 @@ on post-fs-data
 
     #MDDB
     #create meta folder by vold from Android U
-#   mkdir /data/vendor_de/meta 0770 root root
     mkdir /data/vendor_de/meta/mddb 0770 root root
 
-    #FACTORY
-#   mkdir /data/vendor_de/factory 0770 root root
+    # create meta mddb and factory test report folder
+    # change "/data/vendor_de" to "/data/vendor" from android W
+    mkdir /data/vendor/test_mode 0770 root root
+    mkdir /data/vendor/test_mode/meta 0770 root root
+    mkdir /data/vendor/test_mode/factory  0770 root root
 
     #set mdlog and connsyslog permission
     mkdir /data/mdlog 0770 system system

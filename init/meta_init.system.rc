@@ -15,7 +15,7 @@ import /system/etc/init/apexd.rc
 import /system/etc/init/art_apex_boot_integrity.rc
 import /system/etc/init/vold.rc
 import /system/etc/init/servicemanager.rc
-import /system/etc/init/hwservicemanager.rc
+import /system_ext/etc/init/hwservicemanager.rc
 import /system/etc/init/android.hidl.allocator@1.0-service.rc
 
 #phase out multi_init.rc, move related system rc to here.
@@ -203,6 +203,7 @@ on init
     write /proc/sys/net/ipv4/tcp_fwmark_accept 1
 
 
+    mount bpf bpf /sys/fs/bpf nodev noexec nosuid
     # enable armv8_deprecated instruction hooks
     write /proc/sys/abi/swp 1
     # Linux's execveat() syscall may construct paths containing /dev/fd
@@ -362,6 +363,8 @@ service ueventd /system/bin/ueventd
     class core
     critical
     seclabel u:r:ueventd:s0
+    user root
+    shutdown critical
 
 service console /system/bin/sh
     class core
@@ -378,13 +381,6 @@ on property:ro.debuggable=1
     chmod 0773 /data/misc/trace
     start console
 
-# adbd is controlled via property triggers in init.<platform>.usb.rc
-service adbd /apex/com.android.adbd/bin/adbd --root_seclabel=u:r:su:s0
-    class core
-    socket adbd seqpacket 660 system system
-    disabled
-    override
-    seclabel u:r:adbd:s0
 
 #INTERNAL_START
 

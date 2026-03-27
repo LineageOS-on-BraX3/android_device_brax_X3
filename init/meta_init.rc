@@ -14,6 +14,7 @@ import /vendor/etc/init/microtrust.rc
 import /vendor/etc/init/android.hardware.boot@1.2-service.rc
 import /vendor/etc/init/android.hardware.boot@1.2-service-lazy.rc
 import /vendor/etc/init/android.hardware.health-service.example.rc
+import /vendor/etc/init/android.hardware.health-service.mediatek.rc
 
 # drv modify for ata goodix finger start
 import /vendor/bin/hw/vendor.fp.hardware.fingerprint@2.1-service
@@ -42,6 +43,7 @@ import /vendor/etc/init/android.hardware.security.keymint-service.rc
 #import /vendor/etc/init/vendor.mediatek.hardware.keyinstall@1.0-service.rc
 import /vendor/etc/init/vendor.mediatek.hardware.keymanage@1.0-service.rc
 import /vendor/etc/init/android.hardware.audio.service.mediatek.rc
+import /vendor/etc/init/android.hardware.audio.service.rc
 import /vendor/etc/init/vendor.mediatek.hardware.keymaster_attestation@1.1-service.rc
 import /vendor/etc/init/android.hardware.nfc@1.2-service-st.rc
 import /vendor/etc/init/tee.rc
@@ -51,12 +53,14 @@ import /vendor/etc/init/android.hardware.light@2.0-service-mediatek.rc
 import /vendor/etc/init/android.hardware.light@2.0-service-mediatek-lazy.rc
 import /vendor/etc/init/lights-mtk-default.rc
 import /vendor/etc/init/lights-mtk-lazy.rc
+import /vendor/etc/init/android.hardware.light-service.lineage.rc
 import /vendor/etc/init/merged_hal_service.rc
 import /vendor/etc/init/spm_script.rc
 import /vendor/etc/init/nvram_daemon.rc
 import /vendor/etc/init/microtrust.bp_kmsetkey_ca.rc
 import /vendor/etc/init/vendor.microtrust.hardware.thh@2.0-service.rc
 import /vendor/etc/init/microtrust.init_thh.rc
+import /vendor/etc/init/camerahalserver.rc
 #end
 
 #Make sure meta_init.modem.rc is the last rc file.
@@ -167,7 +171,7 @@ on post-fs
     # start keyinstall-1-0
     start vendor.light-default
     start merged_hal_service
-    start vendor.health-default
+    start vendor.health-mediatek
 
     # Support legacy paths
     symlink /sdcard /storage/sdcard0
@@ -204,6 +208,8 @@ on late-fs
     start vendor.keymint-default
     start vendor.keymint-trustonic
     start vendor.keymint-beanpod
+
+    class_start early_hal
     start keymaster_attestation-1-1
     exec_start wait_for_keymaster
     mount_all --late
@@ -295,14 +301,6 @@ on property:sys.rkpchmod=1
 on property:ro.vendor.mtklog_internal=1
     setprop vendor.logmuch.value 10000
 
-# adbd is controlled via property triggers in init.<platform>.usb.rc
-service adbd /apex/com.android.adbd/bin/adbd --root_seclabel=u:r:su:s0
-    class core
-    socket adbd seqpacket 660 system system
-    disabled
-    override
-    seclabel u:r:adbd:s0
-
 #INTERNAL_START
 
 service thermal_manager /vendor/bin/thermal_manager
@@ -365,12 +363,9 @@ on property:ro.boot.usbconfig=0 && property:sys.usb.configfs=1
     write /proc/bootprof "INIT:start adbd"
     start adbd
 
-    # Generate linker config based on apex mounted in bootstrap namespace
-    update_linker_config
-
 on property:sys.usb.ffs.ready=1 && property:ro.boot.usbconfig=0 && property:sys.usb.configfs=1
     write /proc/bootprof "INIT:on property:ro.boot.usbconfig=0"
-    write /config/usb_gadget/g1/UDC "none"
+    #write /config/usb_gadget/g1/UDC "none"
     write /config/usb_gadget/g1/strings/0x409/serialnumber ${ro.serialno}
     write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "adb_acm"
     write /config/usb_gadget/g1/idProduct 0x200E
@@ -407,12 +402,9 @@ on property:ro.boot.usbconfig=3 && property:sys.usb.configfs=1
     write /proc/bootprof "INIT:start adbd"
     start adbd
 
-    # Generate linker config based on apex mounted in bootstrap namespace
-    update_linker_config
-
 on property:sys.usb.ffs.ready=1 && property:ro.boot.usbconfig=3 && property:sys.usb.configfs=1
     write /proc/bootprof "INIT:on property:ro.boot.usbconfig 3"
-    write /config/usb_gadget/g1/UDC "none"
+    #write /config/usb_gadget/g1/UDC "none"
     write /config/usb_gadget/g1/strings/0x409/serialnumber ${ro.serialno}
     write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "meta_elt_adb"
     write /config/usb_gadget/g1/idProduct 0x2040
@@ -428,8 +420,9 @@ on property:sys.usb.ffs.ready=1 && property:ro.boot.usbconfig=3 && property:sys.
 on property:persist.vendor.mediatek.fast_charging.support=*
     write /sys/devices/platform/charger/fast_chg_indicator ${persist.vendor.mediatek.fast_charging.support}
 
-# MTK meta mode enable charging current limit
-on property:persist.vendor.mediatek.enable_meta_current_limit=*
-    write /sys/devices/platform/charger/enable_meta_current_limit ${persist.vendor.mediatek.enable_meta_current_limit}
+on property:persist.vendor.mediatek.charger.log.enable=1
+    write /sys/devices/platform/charger/charger_log_level 3
+    write /sys/module/pd_dbg_info/parameters/dbg_log_en 1
+    write /sys/module/mt6375_charger/parameters/dbg_log_en 1
 
 #INTERNAL_END
