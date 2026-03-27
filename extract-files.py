@@ -43,6 +43,8 @@ blob_fixups: blob_fixups_user_type = {
         'vendor/etc/init/android.hardware.neuralnetworks-shim-service-mtk.rc'
     ): blob_fixup()
         .regex_replace('start', 'enable'),
+    'system_ext/lib64/libarmnn_ndk.mtk.so': blob_fixup()
+        .add_needed('liblog.so'),
     'system_ext/lib64/libimsma.so': blob_fixup()
         .replace_needed('libsink.so', 'libsink-mtk.so'),
     'system_ext/lib64/libsink-mtk.so': blob_fixup()
