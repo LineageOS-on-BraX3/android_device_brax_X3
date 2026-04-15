@@ -215,11 +215,11 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.ipsec_tunnels.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.ipsec_tunnels.xml
 
 # Overlays
+$(call inherit-product, hardware/mediatek/overlay/mssi.mk)
+
 PRODUCT_PACKAGES += \
     FrameworksResOverlay \
-    SettingsResOverlay \
-    TelephonyResOverlay \
-    WifiResOverlay
+    SettingsResOverlay
 
 PRODUCT_PACKAGES += \
     NcmTetheringOverlay
