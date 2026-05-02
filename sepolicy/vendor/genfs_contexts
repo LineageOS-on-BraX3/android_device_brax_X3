@@ -1,10 +1,6 @@
 # Charger
-genfscon sysfs /devices/platform/charger                                                    u:object_r:sysfs_power_supply:s0
-genfscon sysfs /devices/platform/soc/11b21000.i2c/i2c-5/5-006b/power_supply                 u:object_r:sysfs_power_supply:s0
-genfscon sysfs /devices/platform/soc/1c804000.spmi/spmi-0/0-04/mt6377-gauge/power_supply    u:object_r:sysfs_power_supply:s0
-
-# Extcon
-genfscon sysfs /devices/platform/extcon-usb    u:object_r:sysfs_extcon:s0
+genfscon sysfs /devices/platform/soc/11b21000.i2c/i2c-5/5-006b/power_supply                 u:object_r:sysfs_batteryinfo:s0
+genfscon sysfs /devices/platform/soc/1c804000.spmi/spmi-0/0-04/mt6377-gauge/power_supply    u:object_r:sysfs_batteryinfo:s0
 
 # Vibrator
 genfscon sysfs /devices/platform/soc/soc:regulator-vibrator/leds/vibrator    u:object_r:sysfs_vibrator:s0
