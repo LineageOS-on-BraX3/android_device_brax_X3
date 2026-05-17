@@ -7,7 +7,6 @@ BUILD_BROKEN_DUP_RULES := true
 
 DEVICE_PATH := device/brax/X3
 KERNEL_PATH := $(DEVICE_PATH)-kernel
-KEYS_PATH := vendor/lineage-priv/keys
 
 # Architecture
 TARGET_ARCH := arm64
@@ -152,40 +151,23 @@ BOARD_AVB_ENABLE := true
 BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
 
 BOARD_AVB_ALGORITHM := SHA256_RSA2048
-ifneq (,$(wildcard $(KEYS_PATH)/brax3-oem.pem))
-BOARD_AVB_KEY_PATH := $(KEYS_PATH)/brax3-oem.pem
-else
-BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
 BOARD_AVB_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
-endif
 BOARD_AVB_ROLLBACK_INDEX := 0
 
 BOARD_AVB_BOOT_ALGORITHM := SHA256_RSA2048
-ifneq (,$(wildcard $(KEYS_PATH)/brax3-boot.pem))
-BOARD_AVB_BOOT_KEY_PATH := $(KEYS_PATH)/brax3-boot.pem
-else
 BOARD_AVB_BOOT_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
-endif
 BOARD_AVB_BOOT_ROLLBACK_INDEX := 0
 BOARD_AVB_BOOT_ROLLBACK_INDEX_LOCATION := 3
 
 BOARD_AVB_VBMETA_SYSTEM := product system system_dlkm system_ext
 BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
-ifneq (,$(wildcard $(KEYS_PATH)/brax3-system.pem))
-BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := $(KEYS_PATH)/brax3-system.pem
-else
 BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
-endif
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := 0
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
 
 BOARD_AVB_VBMETA_VENDOR := vendor vendor_dlkm odm_dlkm
 BOARD_AVB_VBMETA_VENDOR_ALGORITHM := SHA256_RSA2048
-ifneq (,$(wildcard $(KEYS_PATH)/brax3-vendor.pem))
-BOARD_AVB_VBMETA_VENDOR_KEY_PATH := $(KEYS_PATH)/brax3-vendor.pem
-else
 BOARD_AVB_VBMETA_VENDOR_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
-endif
 BOARD_AVB_VBMETA_VENDOR_ROLLBACK_INDEX := 0
 BOARD_AVB_VBMETA_VENDOR_ROLLBACK_INDEX_LOCATION := 4
 
