@@ -235,7 +235,7 @@ PRODUCT_PACKAGES += \
     fastbootd
 
 # Properties
-include $(LOCAL_PATH)/vendor_logtag.mk
+include hardware/mediatek/configs/properties/vendor_logtag.mk
 
 # Radio
 $(call inherit-product, hardware/lineage/compat/frameworks/compat.mk)
