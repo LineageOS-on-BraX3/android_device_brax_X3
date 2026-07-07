@@ -245,7 +245,7 @@ PRODUCT_PACKAGES += \
     OpenEUICC
 
 PRODUCT_PACKAGES += \
-    nvcfg_mdota.ini_symlink
+    mdota_symlink
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/mediatek-ims-base.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/mediatek-ims-base.xml \
