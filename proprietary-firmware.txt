@@ -1,5 +1,5 @@
 # All proprietary files from this list, unless pinned and noted otherwise,
-# are from BraX3 (LunarOS-v6.0.0-20260324-X3)
+# are from BraX3 (iode-7.6-20260701-brax3)
 
 connsys_bt.img;AB
 dpm.img;AB
@@ -10,7 +10,6 @@ mcf_ota.img;AB
 mcupm.img;AB
 md1img.img;AB
 pi_img.img;AB
-preloader_raw.img;AB
 scp.img;AB
 spmfw.img;AB
 sspm.img;AB
